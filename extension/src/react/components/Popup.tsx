@@ -1,6 +1,6 @@
 import * as styles from '../styles/App.module.css';
 
-const App = () => {
+const Popup = () => {
     return (
         <div>
             <h1 className={styles.text}>Hello world</h1>
@@ -8,4 +8,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default Popup;
