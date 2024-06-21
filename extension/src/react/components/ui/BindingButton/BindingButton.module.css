@@ -1,0 +1,21 @@
+.bindingButton {
+    flex-direction: row;
+    gap: 14px;
+}
+
+.bindingButton p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.deleteIcon {
+    width: 24px;
+
+    filter: brightness(0);
+    transition: filter 0.25s ease-out;
+}
+
+.deleteIcon:hover {
+    filter: brightness(.25);
+}

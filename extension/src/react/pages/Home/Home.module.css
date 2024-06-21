@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    gap: 24px;
+
+    width: 320px;
+    height: fit-content;
+
+    background: #282D3E;
+
+}
+
+.bindingsText {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+
+    color: #FFFFFF;
+}
+
+.bindingsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: stretch;
+    padding: 0px;
+    gap: 14px;
+}

@@ -1,10 +1,15 @@
-import * as styles from '../styles/App.module.css';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from '../pages/Home/Home';
+import Settings from '../pages/Settings/Settings';
 
 const Popup = () => {
     return (
-        <div>
-            <h1 className={styles.text}>Hello world</h1>
-        </div>
+        <Router>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/settings" element={<Settings />} />
+            </Routes>
+        </Router>
     );
 };
 
