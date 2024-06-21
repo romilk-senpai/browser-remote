@@ -7,8 +7,8 @@ module.exports = {
     target: 'web',
     devtool: 'cheap-module-source-map',
     entry: {
-        contentScript: './src/content/index.ts',
-        background: './src/background/index.ts',
+        contentScript: './src/contentScript/contentScript.ts',
+        background: './src/background/background.ts',
         react: './src/react/index.tsx'
     },
     output: {
