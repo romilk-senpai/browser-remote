@@ -14,6 +14,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
+        assetModuleFilename: 'images/[name][ext]',
         clean: true
     },
     plugins: [
@@ -30,7 +31,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /.(ts|tsx)$/,
+                test: /\.(ts|tsx)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
