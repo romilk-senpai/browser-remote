@@ -5,6 +5,7 @@ const path = require('path');
 module.exports = {
     mode: 'development',
     target: 'web',
+    devtool: 'cheap-module-source-map',
     entry: {
         contentScript: './src/content/index.ts',
         background: './src/background/index.ts',
@@ -50,7 +51,7 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(png|svg|jpg|jpeg|gif))$/,
+                test: /\.(png|svg|jpg|jpeg|gif)$/,
                 type: 'asset/resource'
             }
         ]
