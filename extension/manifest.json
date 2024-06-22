@@ -3,6 +3,11 @@
     "name": "Browser Remote",
     "description": "",
     "version": "0.1.0",
+    "permissions": [
+        "contextMenus",
+        "activeTab",
+        "scripting"
+    ],
     "action": {
         "default_popup": "index.html"
     },
