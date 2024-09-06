@@ -1,12 +1,23 @@
-import * as styles from './BindingButton.module.css'
 import * as buttonStyles from '../Button/Button.module.css'
+import * as styles from './BindingButton.module.css'
 import deleteIcon from '../../../assets/icons/delete.png';
+import React from 'react';
 
-const BindingButton = () => {
+export interface BindingButtonProps {
+    host: string;
+    id: number;
+    element: string;
+}
+
+const BindingButton: React.FC<BindingButtonProps> = (props) => {
+    const handleDelete = () => {
+        //
+    }
+
     return (
-        <div className={`${buttonStyles.button} ${styles.bindingButton}`}>
-            <p>div .social-likes__button .social-likes__button_telegram</p>
-            <img className={styles.deleteIcon} src={deleteIcon} />
+        <div className={`${buttonStyles.button} ${styles.bindingButton} `}>
+            <p>{props.element}</p>
+            <img className={styles.deleteIcon} src={deleteIcon} onClick={handleDelete}/>
         </div>
     );
 };
