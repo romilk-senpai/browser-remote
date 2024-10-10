@@ -10,8 +10,9 @@ import (
 )
 
 type Request struct {
-	URL         string              `json:"url"`
-	ElementInfo storage.ElementInfo `json:"element-info"`
+	Url   string `json:"url"`
+	Name  string `json:"name"`
+	Query string `json:"query"`
 }
 
 type Response struct {
@@ -20,7 +21,7 @@ type Response struct {
 }
 
 type ElementSaver interface {
-	SaveElement(elementInfo storage.ElementInfo) (int, error)
+	SaveElement(url string, name string, query string) (storage.Element, error)
 }
 
 func New(log *slog.Logger, elementSaver ElementSaver) http.HandlerFunc {
@@ -34,26 +35,26 @@ func New(log *slog.Logger, elementSaver ElementSaver) http.HandlerFunc {
 		err := render.DecodeJSON(r.Body, &req)
 
 		if err != nil {
-			log.Error("failed to decode request body")
+			log.Error("failed to decode request body", slog.String("error", err.Error()))
 
 			render.JSON(w, r, resp.Error("failed to decode request"))
 
 			return
 		}
 
-		id, err := elementSaver.SaveElement(req.ElementInfo)
+		el, err := elementSaver.SaveElement(req.Url, req.Name, req.Query)
 
 		if err != nil {
-			log.Error("failed to decode request body")
+			log.Error("failed to save element", slog.String("error", err.Error()))
 
-			render.JSON(w, r, resp.Error("failed to decode request"))
+			render.JSON(w, r, resp.Error("failed to save element"))
 
 			return
 		}
 
-		log.Info("new element added", slog.Int("id", id))
+		log.Info("new element added", slog.Int("id", el.Id))
 
-		responseOK(w, r, id)
+		responseOK(w, r, el.Id)
 	}
 }
 

@@ -1,12 +1,20 @@
 package storage
 
-type ElementInfo struct {
-	Host         string `json:"host"`
-	ElementQuery string `json:"element-qeury"`
+type Element struct {
+	Id    int    `json:"id"`
+	Name  string `json:"name"`
+	Query string `json:"qeury"`
+}
+
+type Host struct {
+	Url      string    `json:"url"`
+	Bindings []Element `json:"bindings"`
 }
 
 type Storage interface {
-	Save(host string, bindings []string) error
-	SaveElement(elementInfo ElementInfo) (int, error)
-	Read(host string) ([]string, error)
+	Save(host Host) error
+	SaveElement(url string, element Element) error
+	Read(url string) (Host, error)
+	Delete(url string) error
+	DeleteElement(url string, id int) error
 }
