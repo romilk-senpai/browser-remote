@@ -140,6 +140,22 @@ func (s *JsonStorage) Read(url string) (storage.Host, error) {
 	return storage.Host{}, ErrNoData
 }
 
+func (s *JsonStorage) GetElementById(url string, id int) (storage.Element, error) {
+	host, err := s.Read(url)
+
+	if err != nil {
+		return storage.Element{}, err
+	}
+
+	for _, binding := range host.Bindings {
+		if binding.Id == id {
+			return binding, nil
+		}
+	}
+
+	return storage.Element{}, ErrNoData
+}
+
 func (s *JsonStorage) Delete(url string) error {
 	data, err := os.ReadFile(s.dbfilepath())
 

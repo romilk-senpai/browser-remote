@@ -17,4 +17,5 @@ type Storage interface {
 	Read(url string) (Host, error)
 	Delete(url string) error
 	DeleteElement(url string, id int) error
+	GetElementById(url string, id int) (Element, error)
 }
