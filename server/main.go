@@ -4,6 +4,7 @@ import (
 	"browser-remote-server/internal/config"
 	"browser-remote-server/internal/http-server/handlers/elements/delete"
 	"browser-remote-server/internal/http-server/handlers/elements/save"
+	"browser-remote-server/internal/http-server/handlers/page"
 	"browser-remote-server/internal/storage/jsonstorage"
 	"flag"
 	"log"
@@ -38,6 +39,7 @@ func main() {
 
 	router := mux.NewRouter()
 
+	router.HandleFunc("/", page.New(log))
 	router.HandleFunc("/elements/save", save.New(log, storage)).Methods("POST")
 	router.HandleFunc("/elements/delete", delete.New(log, storage)).Methods("POST")
 

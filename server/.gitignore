@@ -26,3 +26,5 @@ local-cache/
 
 # IDE files
 .idea/
+
+browser-remote-server
