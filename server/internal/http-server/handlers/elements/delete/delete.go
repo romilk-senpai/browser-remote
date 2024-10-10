@@ -21,7 +21,7 @@ type ElementDeleter interface {
 	DeleteElement(url string, id int) error
 }
 
-func New(log *slog.Logger, elementSaver ElementDeleter) http.HandlerFunc {
+func New(log *slog.Logger, elementDeleter ElementDeleter) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		const op = "handlers.url.delete.New"
 
@@ -39,7 +39,7 @@ func New(log *slog.Logger, elementSaver ElementDeleter) http.HandlerFunc {
 			return
 		}
 
-		err = elementSaver.DeleteElement(req.Url, req.Id)
+		err = elementDeleter.DeleteElement(req.Url, req.Id)
 
 		if err != nil {
 			log.Error("failed to delete element")
