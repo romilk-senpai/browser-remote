@@ -26,7 +26,7 @@ type ElementSaver interface {
 
 func New(log *slog.Logger, elementSaver ElementSaver) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		const op = "handlers.url.save.New"
+		const op = "handlers.save.New"
 
 		log = log.With(slog.String("op", op))
 
