@@ -31,7 +31,7 @@ func main() {
 
 	log := setupLogger(cfg.Env)
 
-	log.Info("server started", slog.String("env", cfg.Env))
+	log.Info("server started", slog.String("env", cfg.Env), slog.String("address", cfg.HTTPServer.Address))
 	log.Debug("debug logging enabled")
 
 	storage := jsonstorage.New(cfg.StoragePath)
@@ -39,9 +39,12 @@ func main() {
 
 	router := mux.NewRouter()
 
-	router.HandleFunc("/", page.New(log))
+	router.HandleFunc("/", page.New(log, cfg.HTMLPath))
 	router.HandleFunc("/elements/save", save.New(log, storage)).Methods("POST")
 	router.HandleFunc("/elements/delete", delete.New(log, storage)).Methods("POST")
+
+	s := http.StripPrefix("/static/", http.FileServer(http.Dir("./static/")))
+	router.PathPrefix("/static/").Handler(s)
 
 	srv := &http.Server{
 		Handler:      router,

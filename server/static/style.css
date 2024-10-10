@@ -2,19 +2,19 @@
 
 body {
     margin: 0;
-    background-color: #282829;
+    background-color: rgb(30, 33, 34);
 }
 
 .header {
     margin: auto;
     height: 56px;
-    background-color: #262627;
+    background-color: rgb(29, 31, 33);;
     border-bottom: 1px solid #3a3a3a;
 }
 
 .header p {
     user-select: none;
-    margin-left: 8px;
+    margin-left: 14px;
     font-family: 'Noto Sans';
     font-style: normal;
     font-size: 24px;
@@ -39,7 +39,7 @@ body {
     width: 240px;
     height: 48px;
     border-radius: 8px;
-    background-color: #494949;
+    background-color: #393c3f;
     outline: 1px solid rgb(107, 107, 107);
 
     display: flex;
@@ -49,13 +49,13 @@ body {
 
 @media (hover: hover) and (pointer: fine) {
     .button:hover {
-        background-color: #3b3b3b;
+        background-color: #3e4144;
         transition-duration: .15s;
     }
 }
 
 .button:active {
-    background-color: #313131;
+    background-color: #4d5053;
     transition-duration: .15s;
 }
 

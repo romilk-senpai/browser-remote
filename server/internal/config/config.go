@@ -12,6 +12,7 @@ import (
 
 type Config struct {
 	Env         string     `yaml:"env" env-default:"local"`
+	HTMLPath    string     `yaml:"html_path" env-required:"true"`
 	StoragePath string     `yaml:"storage_path" env-required:"true"`
 	HTTPServer  HTTPServer `yaml:"http_server"`
 }

@@ -9,16 +9,32 @@ import (
 	"github.com/go-chi/render"
 )
 
-func New(log *slog.Logger) http.HandlerFunc {
+type Button struct {
+	Name string
+}
+
+type PageData struct {
+	Buttons []Button
+}
+
+func New(log *slog.Logger, htmlpath string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		tmpl, err := template.ParseFiles("/page/index.html")
+		buttons := []Button{
+			{Name: "Button 1"},
+			{Name: "Button 2"},
+			{Name: "Button 3"},
+		}
+
+		data := PageData{Buttons: buttons}
+
+		tmpl, err := template.ParseFiles(htmlpath)
 		if err != nil {
 			log.Error("html parsing error", slog.String("error", err.Error()))
 			render.JSON(w, r, resp.Error("html error"))
 			return
 		}
 
-		err = tmpl.Execute(w, r)
+		err = tmpl.Execute(w, data)
 
 		if err != nil {
 			log.Error("html execution error", slog.String("error", err.Error()))
