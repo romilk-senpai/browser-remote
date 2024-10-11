@@ -1,4 +1,4 @@
-# browser-remote
+# Browser Remote
 
 Extension allows to bind any buttons on web pages and then call them remotely.
 Remote controls appear on `yourhost.com/` or `localhost:8082/` by default as you bind buttons through the extension.
