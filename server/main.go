@@ -44,7 +44,7 @@ func main() {
 
 	router := mux.NewRouter()
 
-	router.Use(middleware.New(log))
+	router.Use(middleware.NewLogger(log))
 
 	router.HandleFunc("/", page.New(log, cfg.HTMLPath))
 	router.HandleFunc("/elements/save", save.New(log, storage)).Methods("POST")

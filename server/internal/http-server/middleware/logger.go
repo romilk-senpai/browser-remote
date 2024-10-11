@@ -8,7 +8,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func New(log *slog.Logger) mux.MiddlewareFunc {
+func NewLogger(log *slog.Logger) mux.MiddlewareFunc {
 	return func(next http.Handler) http.Handler {
 		log := log.With(
 			slog.String("component", "middleware/logger"),
