@@ -15,4 +15,14 @@ Server runs with:
 ./browser-remote-server -config path/to/config
 ```
 
+Build and run with:
+```shell
+make run
+```
+
+Run swagger API ui:
+```shell
+make swag
+```
+
 WIP!

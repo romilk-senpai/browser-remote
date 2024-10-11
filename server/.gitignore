@@ -27,4 +27,7 @@ local-cache/
 # IDE files
 .idea/
 
+# swagger docs
+docs/
+
 browser-remote-server
