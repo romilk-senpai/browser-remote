@@ -9,6 +9,7 @@ import (
 	"browser-remote-server/internal/http-server/handlers/trigger"
 	"browser-remote-server/internal/http-server/middleware"
 	"browser-remote-server/internal/storage/jsonstorage"
+	"browser-remote-server/lib/logger/handlers/slogpretty"
 	"flag"
 	"log"
 	"log/slog"
@@ -82,4 +83,14 @@ func setupLogger(env string) *slog.Logger {
 	}
 
 	return log
+}
+
+func setupPrettySlog() *slog.Logger {
+	opts := slogpretty.PrettyHandlerOptions{
+		SlogOpts: &slog.HandlerOptions{Level: slog.LevelDebug},
+	}
+
+	handler := opts.NewPrettyHandler(os.Stdout)
+
+	return slog.New(handler)
 }

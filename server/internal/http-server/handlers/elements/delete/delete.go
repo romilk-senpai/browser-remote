@@ -25,7 +25,7 @@ func New(log *slog.Logger, elementDeleter ElementDeleter) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		const op = "handlers.delete.New"
 
-		log = log.With(slog.String("op", op))
+		log := log.With(slog.String("op", op))
 
 		var req Request
 

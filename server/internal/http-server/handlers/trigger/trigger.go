@@ -27,7 +27,7 @@ func New(log *slog.Logger, eventController *events.EventController, provider Ele
 	return func(w http.ResponseWriter, r *http.Request) {
 		const op = "handlers.trigger.New"
 
-		log = log.With(slog.String("op", op))
+		log := log.With(slog.String("op", op))
 
 		var req Request
 

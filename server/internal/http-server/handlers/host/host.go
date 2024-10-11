@@ -26,7 +26,7 @@ func New(log *slog.Logger, provider HostProvider) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		const op = "handlers.host.New"
 
-		log = log.With(slog.String("op", op))
+		log := log.With(slog.String("op", op))
 
 		var req Request
 
