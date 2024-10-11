@@ -9,12 +9,13 @@ import (
 )
 
 func NewLogger(log *slog.Logger) mux.MiddlewareFunc {
+
+	log.Info("logger middleware enabled")
+
 	return func(next http.Handler) http.Handler {
 		log := log.With(
 			slog.String("component", "middleware/logger"),
 		)
-
-		log.Info("logger middleware enabled")
 
 		fn := func(w http.ResponseWriter, r *http.Request) {
 			entry := log.With(
