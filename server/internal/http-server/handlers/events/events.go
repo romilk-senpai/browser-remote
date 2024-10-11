@@ -38,8 +38,12 @@ func New(log *slog.Logger, eventController *events.EventController) http.Handler
 		currentEvent := eventController.Current()
 
 		if currentEvent == nil {
-			log.Info("event already processed at", slog.String("host", req.Url))
+			responseOK(w, r, nil)
 
+			return
+		}
+
+		if currentEvent.EventData.Host != req.Url {
 			responseOK(w, r, nil)
 
 			return

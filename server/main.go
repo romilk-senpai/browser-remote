@@ -7,6 +7,7 @@ import (
 	"browser-remote-server/internal/http-server/handlers/elements/save"
 	"browser-remote-server/internal/http-server/handlers/page"
 	"browser-remote-server/internal/http-server/handlers/trigger"
+	"browser-remote-server/internal/http-server/middleware"
 	"browser-remote-server/internal/storage/jsonstorage"
 	"flag"
 	"log"
@@ -42,6 +43,8 @@ func main() {
 	eventController := events.New(log)
 
 	router := mux.NewRouter()
+
+	router.Use(middleware.New(log))
 
 	router.HandleFunc("/", page.New(log, cfg.HTMLPath))
 	router.HandleFunc("/elements/save", save.New(log, storage)).Methods("POST")
