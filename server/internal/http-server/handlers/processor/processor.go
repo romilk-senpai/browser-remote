@@ -1,4 +1,4 @@
-package events
+package processor
 
 import (
 	"browser-remote-server/internal/http-server/events"
@@ -21,10 +21,12 @@ type Response struct {
 
 func New(log *slog.Logger, eventController *events.EventController) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		const op = "handlers.event.New"
+		const op = "handlers.processor.New"
+
 		log := log.With(slog.String("op", op))
 
 		var req Request
+
 		err := render.DecodeJSON(r.Body, &req)
 
 		if err != nil {

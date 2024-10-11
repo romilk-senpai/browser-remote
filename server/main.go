@@ -5,7 +5,9 @@ import (
 	"browser-remote-server/internal/http-server/events"
 	"browser-remote-server/internal/http-server/handlers/elements/delete"
 	"browser-remote-server/internal/http-server/handlers/elements/save"
+	"browser-remote-server/internal/http-server/handlers/host"
 	"browser-remote-server/internal/http-server/handlers/page"
+	"browser-remote-server/internal/http-server/handlers/processor"
 	"browser-remote-server/internal/http-server/handlers/trigger"
 	"browser-remote-server/internal/http-server/middleware"
 	"browser-remote-server/internal/storage/jsonstorage"
@@ -50,7 +52,9 @@ func main() {
 	router.HandleFunc("/", page.New(log, cfg.HTMLPath))
 	router.HandleFunc("/elements/save", save.New(log, storage)).Methods("POST")
 	router.HandleFunc("/elements/delete", delete.New(log, storage)).Methods("POST")
+	router.HandleFunc("/host", host.New(log, storage)).Methods("POST")
 	router.HandleFunc("/trigger", trigger.New(log, eventController, storage)).Methods("POST")
+	router.HandleFunc("/process", processor.New(log, eventController)).Methods("POST")
 
 	s := http.StripPrefix("/static/", http.FileServer(http.Dir("./static/")))
 	router.PathPrefix("/static/").Handler(s)

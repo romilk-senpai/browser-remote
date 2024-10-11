@@ -1,4 +1,4 @@
-package save
+package host
 
 import (
 	"browser-remote-server/internal/storage"
