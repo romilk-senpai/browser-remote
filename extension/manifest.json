@@ -6,7 +6,10 @@
     "permissions": [
         "contextMenus",
         "activeTab",
-        "scripting"
+        "tabs",
+        "scripting",
+        "http://localhost:8082/",
+        "localhost:8082/"
     ],
     "action": {
         "default_popup": "index.html"

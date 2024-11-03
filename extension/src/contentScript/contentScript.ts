@@ -5,20 +5,18 @@ document.addEventListener('contextmenu', event => {
     window.lastRightClickedElement = event.target as HTMLElement;
 });
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
     if (message.action === "sendElement") {
         const elementText = $(window.lastRightClickedElement) || "No jquery available";
         console.log(elementText);
-        chrome.tabs.query({ active: true, lastFocusedWindow: true })
-            .then(tabs => {
-                fetch(`${API_HOST}/elements/save`, {
-                    method: "POST",
-                    body: JSON.stringify({
-                        url: tabs[0].url,
-                        name: "",
-                        query: elementText
-                    })
-                });
-            });
+        const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
+        await fetch(`${API_HOST}/elements/save`, {
+            method: "POST",
+            body: JSON.stringify({
+                url: tab.url,
+                name: "",
+                query: elementText
+            })
+        });
     }
 });
