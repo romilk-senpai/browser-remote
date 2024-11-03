@@ -3,7 +3,7 @@ package storage
 type Element struct {
 	Id    int    `json:"id"`
 	Name  string `json:"name"`
-	Query string `json:"qeury"`
+	Query string `json:"query"`
 }
 
 type Host struct {
