@@ -1,6 +1,6 @@
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from '../pages/Home/Home';
-import Settings from '../pages/Settings/Settings';
+import Home from './pages/Home/Home';
+import Settings from './pages/Settings/Settings';
 
 const Popup = () => {
     return (

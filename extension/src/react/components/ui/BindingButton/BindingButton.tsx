@@ -6,7 +6,7 @@ import React from 'react';
 export interface BindingButtonProps {
     host: string;
     id: number;
-    element: string;
+    query: string;
 }
 
 const BindingButton: React.FC<BindingButtonProps> = (props) => {
@@ -16,8 +16,8 @@ const BindingButton: React.FC<BindingButtonProps> = (props) => {
 
     return (
         <div className={`${buttonStyles.button} ${styles.bindingButton} `}>
-            <p>{props.element}</p>
-            <img className={styles.deleteIcon} src={deleteIcon} onClick={handleDelete}/>
+            <p>{props.query}</p>
+            <img className={styles.deleteIcon} src={deleteIcon} onClick={handleDelete} />
         </div>
     );
 };
