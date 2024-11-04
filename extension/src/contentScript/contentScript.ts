@@ -7,16 +7,18 @@ document.addEventListener('contextmenu', event => {
 
 chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
     if (message.action === "sendElement") {
-        const elementText = $(window.lastRightClickedElement) || "No jquery available";
-        console.log(elementText);
-        const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
+        const elementText = $(window.lastRightClickedElement)[0] || null;
+        if (!elementText) {
+            return;
+        }
         await fetch(`${API_HOST}/elements/save`, {
             method: "POST",
             body: JSON.stringify({
-                url: tab.url,
+                url: message.url,
                 name: "",
                 query: elementText
             })
         });
     }
+    console.log(message);
 });
