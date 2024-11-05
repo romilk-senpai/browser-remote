@@ -1,7 +1,8 @@
 chrome.runtime.onInstalled.addListener(() => {
     chrome.contextMenus.create({
         id: "sendElement",
-        title: "Remember this element"
+        title: "Remember this element",
+        contexts: ["all"]
     });
 });
 
