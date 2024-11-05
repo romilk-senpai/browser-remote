@@ -7,7 +7,7 @@ document.addEventListener('contextmenu', event => {
 
 chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
     if (message.action === "sendElement") {
-        const elementText = $(window.lastRightClickedElement)[0] || null;
+        const elementText = $(window.lastRightClickedElement)[0] || null; // todo: this is not text fix me
         if (!elementText) {
             return;
         }
@@ -20,5 +20,4 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
             })
         });
     }
-    console.log(message);
 });
