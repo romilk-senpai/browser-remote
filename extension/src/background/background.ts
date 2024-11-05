@@ -8,7 +8,16 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
     if (info.menuItemId === "sendElement" && tab?.id) {
-        chrome.tabs.sendMessage(tab.id, { action: "sendElement", url: tab.url });
+        if (!tab.url) {
+            return;
+        }
+        try {
+            let url = new URL(tab.url);
+            chrome.tabs.sendMessage(tab.id, { action: "sendElement", url: url });
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
 });
 
